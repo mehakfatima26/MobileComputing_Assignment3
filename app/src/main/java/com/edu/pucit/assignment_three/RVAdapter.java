@@ -52,15 +52,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>
         holder.tv_title.setText(dataContainer.title);
         holder.tv_level.setText(dataContainer.level);
         holder.tv_info.setText(dataContainer.info);
-        //holder.btn_load.setText(dataContainer.buttonText);
+        int length=dataContainer.url.length();
+        final String extension = dataContainer.url.substring(length - 3);
         Picasso.get().load(baseUrl + dataContainer.imagePath).into(holder.iv_image);
-        if(dataContainer.buttonText.equals("DOWNLOAD")) {
+        if(extension.equals("pdf") || extension.equals("zip")) {
             holder.btn_load.setText("DOWNLOAD");
             holder.btn_load.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //ADDED EXTENSION PDF WITH TITLE TO OPEN IT IN PDF FORMAT FROM STORAGE
-                    downloadFile(dataContainer.url, dataContainer.title+".pdf");
+                    downloadFile(dataContainer.url, dataContainer.title+'.'+extension);
                 }
             });
         }
@@ -102,6 +103,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>
 
     private void downloadFile(String url, String title)
     {
+        Toast.makeText(context,url, Toast.LENGTH_SHORT).show();
         DownloadManager manager = (DownloadManager)context.getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setTitle(title);

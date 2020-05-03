@@ -65,11 +65,7 @@ public class MainActivity extends AppCompatActivity
                 dataContainer.title=itemObj.getString("title");
                 dataContainer.level=itemObj.getString("level");
                 dataContainer.info=itemObj.getString("info");
-                int length=itemObj.getString("url").length();
-                if(itemObj.getString("url").substring(length - 3).equals("pdf"))
-                    dataContainer.buttonText="DOWNLOAD";
-                else
-                    dataContainer.buttonText="READ ONLINE";
+                dataContainer.buttonText="READ ONLINE";
                 dataContainer.imagePath=itemObj.getString("cover");
                 dataContainer.url=itemObj.getString("url");
                 viewItems.add(dataContainer);
