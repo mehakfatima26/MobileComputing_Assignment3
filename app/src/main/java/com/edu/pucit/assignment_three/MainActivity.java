@@ -6,7 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +22,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,15 +53,14 @@ public class MainActivity extends AppCompatActivity
 
     private void addItemsFromJSON()
     {
-        try {
-
+        try
+        {
             String jsonDataString = readJSONDataFromFile();
             JSONArray jsonArray = new JSONArray(jsonDataString);
 
-            for (int i=0; i<jsonArray.length(); ++i) {
-
+            for (int i=0; i<jsonArray.length(); ++i)
+            {
                 JSONObject itemObj = jsonArray.getJSONObject(i);
-
                 DataContainer dataContainer = new DataContainer();
                 dataContainer.title=itemObj.getString("title");
                 dataContainer.level=itemObj.getString("level");
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity
                 else
                     dataContainer.buttonText="READ ONLINE";
                 dataContainer.imagePath=itemObj.getString("cover");
+                dataContainer.url=itemObj.getString("url");
                 viewItems.add(dataContainer);
             }
 

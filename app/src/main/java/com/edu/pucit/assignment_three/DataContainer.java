@@ -7,4 +7,5 @@ public class DataContainer
     public String info;
     public String buttonText;
     public String imagePath;
+    public String url;
 }
