@@ -103,7 +103,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>
 
     private void downloadFile(String url, String title)
     {
-        Toast.makeText(context,url, Toast.LENGTH_SHORT).show();
         DownloadManager manager = (DownloadManager)context.getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setTitle(title);
