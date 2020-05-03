@@ -41,23 +41,6 @@ public class MainActivity extends AppCompatActivity
         rv.setAdapter(adapter);
 
         addItemsFromJSON();
-
-        /*String[] title=new String[100];
-        String[] level=new String[100];
-        String[] info=new String[100];
-        String[] button=new String[100];
-
-        for(int i=0; i<title.length; i++)
-        {
-
-         title[i]="Data Structures and Algorithms with Object-Oriented Design Patterns in Python";
-         level[i]="Level " + (i+1);
-         info[i]="This book is about the fundamentals of data structures and algorithms. It uses object oriented design patterns and teaches topics like stacks, queues, lists, hashing and graphs. There are also versions for other programming languages.";
-         button[i]="Read Online";
-        }
-        Integer[] image_id={R.drawable.android_100x100, R.drawable.sample150};
-        RVAdapter adapter=new RVAdapter(this,image_id,title,level,info,button);
-        rv.setAdapter(adapter);*/
     }
 
     private void addItemsFromJSON()
@@ -80,6 +63,7 @@ public class MainActivity extends AppCompatActivity
                     dataContainer.buttonText="DOWNLOAD";
                 else
                     dataContainer.buttonText="READ ONLINE";
+                dataContainer.imagePath=itemObj.getString("cover");
                 viewItems.add(dataContainer);
             }
 

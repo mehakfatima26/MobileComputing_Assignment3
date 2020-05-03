@@ -6,4 +6,5 @@ public class DataContainer
     public String level;
     public String info;
     public String buttonText;
+    public String imagePath;
 }

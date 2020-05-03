@@ -13,35 +13,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>
 {
     Context context;
-
-    /*private Integer[] image_id;
-    private String[] title;
-    private String[] level;
-    private String[] info;
-    private String[] button;*/
-
     private List<Object> listRecyclerItem;
-
-
-    /*public RVAdapter(Context context, Integer[] image_id, String[] title, String[] level, String[] info, String[] button) {
-        this.context = context;
-        this.image_id = image_id;
-        this.title = title;
-        this.level = level;
-        this.info = info;
-        this.button = button;
-    }*/
+    String baseUrl="https://raw.githubusercontent.com/revolunet/PythonBooks/master/";
 
     public RVAdapter(Context context, List<Object> listRecyclerItem) {
         this.context = context;
         this.listRecyclerItem = listRecyclerItem;
     }
-
 
     @NonNull
     @Override
@@ -51,15 +36,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>
         return holder;
     }
 
-    /*@Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.iv_image.setImageResource((position % 2 == 1) ? image_id[0] : image_id[1]);
-        holder.tv_title.setText(title[position]);
-        holder.tv_level.setText(level[position]);
-        holder.tv_info.setText(info[position]);
-        holder.btn_load.setText(button[position]);
-    }*/
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         DataContainer dataContainer = (DataContainer)listRecyclerItem.get(position);
@@ -67,6 +43,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>
         holder.tv_level.setText(dataContainer.level);
         holder.tv_info.setText(dataContainer.info);
         holder.btn_load.setText(dataContainer.buttonText);
+        Picasso.get().load(baseUrl+dataContainer.imagePath).into(holder.iv_image);
     }
 
     @Override
